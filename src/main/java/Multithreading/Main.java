@@ -21,10 +21,9 @@ public class Main {
     }
 
     public static float[] newArrayValuesSecond(float[] arr) {
-        for (int i = arr.length; i < arr.length * 2; i++) {
-            arr[i - arr.length] = (float) (arr[i - arr.length] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
+        for (int i = arr.length, j = arr.length; i < arr.length * 2; i++) {
+            arr[i - j] = (float) (arr[i - j] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
         }
-        // Поддерживает двойное индексирование, for можно описать так : for (int i = 0, int j = arr.length)
         return arr;
     }
 
