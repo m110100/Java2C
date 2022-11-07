@@ -1,6 +1,7 @@
 package MultithreadingSecondPart;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
 
@@ -58,6 +59,8 @@ public class Car implements Runnable {
         final ArrayList<Stage> stages = race.getStages();
 
         for (Stage stage : stages) stage.go(this);
+
+        if (Objects.equals(Main.winner, "")) Main.winner = getName();
 
         countDownLatchFinish.countDown();
     }

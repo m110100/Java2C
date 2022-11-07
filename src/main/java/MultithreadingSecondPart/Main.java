@@ -4,6 +4,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
 
 public class Main {
+    public static String winner = "";
     static final int CARS_COUNT = 4;
     static final CountDownLatch countDownLatchFinish = new CountDownLatch(CARS_COUNT);
     static final CountDownLatch countDownLatchReady = new CountDownLatch(CARS_COUNT);
@@ -31,5 +32,7 @@ public class Main {
         countDownLatchFinish.await();
 
         System.out.println("IMPORTANT ANNOUNCEMENT >>> The race is over!!!");
+
+        System.out.printf("%nWinner is %s", winner);
     }
 }
