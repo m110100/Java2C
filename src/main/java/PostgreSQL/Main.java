@@ -25,6 +25,9 @@ public class Main {
 
             System.out.println("\nQuery 4 :");
             QueryFour(statement);
+
+            System.out.println("\nQuery 5 :");
+            QueryFive(statement);
         }
         catch (SQLException e) {
             System.out.println("Connection to java_students database failed..");
@@ -107,6 +110,21 @@ public class Main {
 
             System.out.printf("%s\n", subjName);
         }
+    }
+
+    public static void QueryFive(Statement statement) throws SQLException {
+        resultSet = statement.executeQuery("SELECT stud.name as studName, subj.name as subjName, p.grade " +
+                "FROM students AS stud JOIN progress AS p ON stud.id = p.student_id JOIN subjects AS subj " +
+                "ON p.subject_id = subj.id WHERE p.grade > 3 OFFSET 1;");
+
+        while (resultSet.next()) {
+            String studName = resultSet.getString("studName");
+            String subjName = resultSet.getString("subjName");
+            int grade = resultSet.getInt("grade");
+
+            System.out.printf("%s %s %d\n", studName, subjName, grade);
+        }
+
     }
 
 }
