@@ -48,7 +48,6 @@ insert into progress values (default, 2, 4, 2);
 insert into progress values (default, 1, 4, 2);
 insert into progress values (default, 3, 4, 2);
 
---Выводит всю информацию из таблиц
 SELECT stud.name, subj.name, p.grade FROM students AS stud JOIN progress AS p ON stud.id = p.student_id
 JOIN subjects AS subj ON p.subject_id = subj.id;
 
