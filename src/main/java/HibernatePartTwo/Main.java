@@ -13,7 +13,17 @@ import java.util.concurrent.CountDownLatch;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
+        long time = System.currentTimeMillis();
+        long opt;
+        long pes;
+
+        optimistic();
+        opt = System.currentTimeMillis() - time;
         pessimistic();
+        pes = System.currentTimeMillis() - time;
+        System.out.printf("Optimistic - %d", opt);
+        System.out.println();
+        System.out.printf("Pessimistic - %d", pes);
     }
 
     public static void UncheckableSleep(int ms) {
@@ -68,6 +78,10 @@ public class Main {
             }).start();
         }
         cdl.await();
+
+        List res = session.createQuery("select sum(i.value) from Item i").getResultList();
+        System.out.println("Objects sum : " + res.get(0));
+
         session.close();
     }
 
@@ -124,6 +138,10 @@ public class Main {
             }).start();
         }
         cdl.await();
+
+        List res = session.createQuery("select sum(i.value) from Item i").getResultList();
+        System.out.println("Objects sum : " + res.get(0));
+
         session.close();
     }
 }
